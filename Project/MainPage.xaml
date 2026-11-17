@@ -20,7 +20,6 @@
 
             <Label
                 Text="This is your font and icon workout"
-                FontFamily="MyMaterialSymbols"
                 FontSize="24"/>
 
             <Button

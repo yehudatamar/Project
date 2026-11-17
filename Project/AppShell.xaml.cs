@@ -1,10 +1,13 @@
-﻿namespace Project
+﻿namespace Project;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+
+        // רישום הנתיבים למסכים
+        Routing.RegisterRoute(nameof(view.SignInPage), typeof(view.SignInPage));
+        Routing.RegisterRoute(nameof(view.SignUpPage), typeof(view.SignUpPage));
     }
 }

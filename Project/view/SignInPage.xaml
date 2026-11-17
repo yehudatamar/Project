@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Project.ViewModels"
+             x:Class="Project.view.SignInPage"
+             x:DataType="viewmodels:SignInViewModel"
+             Title="SignIn">
+
+    <Grid RowDefinitions="*, Auto, Auto, Auto, Auto, *" Margin="30">
+
+        <!-- שדה מייל -->
+        <Entry Grid.Row="1"
+               Keyboard="Email"
+               FontSize="18"
+               Placeholder="Email"
+               TextColor="Wheat"
+               Text="{Binding UserName}"
+               Margin="0,0,0,15"/>
+
+        <!-- שדה סיסמה + כפתור הצג/הסתר -->
+        <Grid Grid.Row="2" ColumnDefinitions="*, Auto" Margin="0,0,0,25">
+            <Entry Grid.Column="0"
+                   BackgroundColor="Transparent"
+                   FontSize="18"
+                   IsPassword="{Binding EntryAsPassword}"
+                   Placeholder="סיסמה"
+                   TextColor="Wheat"
+                   VerticalOptions="Center"
+                   Text="{Binding UserPassword}"/>
+
+            <Button Grid.Column="1"
+                    Command="{Binding TogglePasswordCommand}"
+                    Margin="5,0,0,0"
+                    Padding="0"
+                    BackgroundColor="Transparent"
+                    FontSize="18"
+                    FontFamily="MyMaterialSymbols"
+                    HorizontalOptions="End"
+                    Text="{Binding PasswordIconCode}"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+        </Grid>
+
+        <!-- כפתור חיבור -->
+        <Button Grid.Row="3"
+                CornerRadius="8"
+                FontSize="18"
+                HeightRequest="50"
+                Text="חיבור"
+                TextColor="White"
+                IsEnabled="{Binding IsSignInButtonEnabled}"
+                Command="{Binding SignInCommand}"/>
+        
+        <!-- קישור למסך הרשמה -->
+        <HorizontalStackLayout Grid.Row="5" HorizontalOptions="Center" Margin="0,15,0,0">
+            <Label Text="Don't have an account?" TextColor="Black" VerticalTextAlignment="Center"/>
+            <Button Text="Sign Up" TextColor="BlueViolet" BackgroundColor="Transparent" Clicked="OnSignUpClicked"/>
+        </HorizontalStackLayout>
+        
+        <!-- תוית הודעה -->
+        <Label Grid.Row="4"
+               FontSize="22"
+               HorizontalTextAlignment="Center"
+               Margin="0,20,0,0"
+               IsVisible="{Binding SignInMessageVisible}"
+               Text="{Binding LoginMessage}"
+               TextColor="{Binding SignInMessageColor}"/>
+
+    </Grid>
+</ContentPage>

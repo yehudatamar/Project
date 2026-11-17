@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:Project.ViewModels"
+             x:DataType="viewmodels:SignUpViewModel"
+             x:Class="Project.view.SignUpPage"
+             Title="SignUpPage">
+
+    <!-- סגנונות לבדיקת תקינות המייל לפי המצגת -->
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Wheat" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="#004FF9"/>
+            <GradientStop Offset="1.0" Color="#FFF94C"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid RowDefinitions="*,Auto,*" ColumnDefinitions="*,8*,*">
+
+        <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+
+            <!-- כותרת -->
+            <Label Text="Create Account"
+                   TextColor="White"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+
+            <!-- שם פרטי -->
+            <Border Margin="0,0,0,10" Padding="10" Stroke="#ccc" StrokeShape="RoundRectangle 8" StrokeThickness="1">
+                <Entry FontSize="18"
+                       Placeholder="First Name"
+                       TextColor="Wheat"
+                       Text="{Binding FirstName}"/>
+            </Border>
+
+            <!-- שם משפחה -->
+            <Border Margin="0,0,0,10" Padding="10" Stroke="#ccc" StrokeShape="RoundRectangle 8" StrokeThickness="1">
+                <Entry FontSize="18"
+                       Placeholder="Last Name"
+                       TextColor="Wheat"
+                       Text="{Binding LastName}"/>
+            </Border>
+
+            <!-- אימייל עם אימות בזמן אמת -->
+            <Border Margin="0,0,0,10" Padding="10" Stroke="#ccc" StrokeShape="RoundRectangle 8" StrokeThickness="1">
+                <Entry Keyboard="Email"
+                       FontSize="18"
+                       Placeholder="Email"
+                       Style="{StaticResource ValidEntryStyle}"
+                       Text="{Binding UserEmail}">
+                    <Entry.Behaviors>
+                        <toolkit:EmailValidationBehavior
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            ValidStyle="{StaticResource ValidEntryStyle}"
+                            Flags="ValidateOnValueChanged"/>
+                    </Entry.Behaviors>
+                </Entry>
+            </Border>
+
+            <!-- סיסמה -->
+            <Border Margin="0,0,0,10" Stroke="#ccc" StrokeShape="RoundRectangle 8" StrokeThickness="1">
+                <Grid Padding="10" ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                    <Entry Grid.Column="0"
+                           IsPassword="{Binding EntryAsPassword}"
+                           BackgroundColor="Transparent"
+                           FontSize="18"
+                           Placeholder="Password"
+                           TextColor="Wheat"
+                           VerticalOptions="Center"
+                           Text="{Binding UserPassword}"/>
+
+                    <Button Grid.Column="1"
+                            Margin="5,0,0,0"
+                            Padding="0"
+                            BackgroundColor="Transparent"
+                            FontSize="18"
+                            FontFamily="MyMaterialSymbols"
+                            HorizontalOptions="End"
+                            TextColor="Black"
+                            VerticalOptions="Center"
+                            Text="{Binding PasswordIconCode}"
+                            Command="{Binding ShowPasswordCommand}"/>
+                </Grid>
+            </Border>
+
+            <!-- טלפון נייד -->
+            <Border Margin="0,0,0,10" Padding="10" Stroke="#ccc" StrokeShape="RoundRectangle 8" StrokeThickness="1">
+                <Entry Keyboard="Telephone"
+                       FontSize="18"
+                       Placeholder="Mobile"
+                       TextColor="Wheat"
+                       Text="{Binding Mobile}"/>
+            </Border>
+
+            <!-- כפתור הרשמה -->
+            <Button CornerRadius="8"
+                    FontSize="20"
+                    HeightRequest="50"
+                    Margin="0,15,0,0"
+                    Text="Sign Up"
+                    TextColor="White"
+                    Command="{Binding SignUpCommand}"/>
+
+            <!-- קישור למסך SignIn -->
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="0,15,0,0">
+                <Label Text="Already have an account?"
+                       TextColor="White"
+                       FontSize="16"
+                       VerticalTextAlignment="Center"/>
+                <Button Text="SignIn"
+                        TextColor="BlueViolet"
+                        BackgroundColor="Transparent"
+                        FontSize="16"
+                        Command="{Binding SignInCommand}"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

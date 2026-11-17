@@ -4,11 +4,24 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Project"
-    Title="Project">
+    xmlns:views="clr-namespace:Project.view"
+    Shell.FlyoutBehavior="Disabled">
 
+    <!-- מסך הכניסה הוא המסך הראשוני והוא בודד (ללא סרגל תחתון) -->
+    <ShellContent
+        Title="SignIn"
+        ContentTemplate="{DataTemplate views:SignInPage}"
+        Route="SignInPage" />
+
+    <!-- המסך הראשי רשום כנתיב נפרד -->
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-
+    
+    <!-- מסך הרשמה -->
+    <ShellContent
+        Title="SignUp"
+        ContentTemplate="{DataTemplate views:SignUpPage}"
+        Route="SignUpPage" />
 </Shell>

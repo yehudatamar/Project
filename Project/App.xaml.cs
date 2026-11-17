@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Project.view;
 
 namespace Project
 {
@@ -11,7 +12,8 @@ namespace Project
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+           // return new Window(new AppShell());
+           return new Window(new SignInPage());
         }
     }
 }

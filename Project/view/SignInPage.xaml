@@ -12,53 +12,54 @@
 
         <!-- שדה מייל -->
         <Entry Grid.Row="1"
-               Keyboard="Email"
-               FontSize="18"
-               Placeholder="Email"
-               TextColor="Wheat"
+Keyboard="Email"
+FontSize="18"
+Placeholder="Email"
+TextColor="Wheat"
                Text="{Binding UserName}"
                Margin="0,0,0,15"/>
 
         <!-- שדה סיסמה + כפתור הצג/הסתר -->
         <Grid Grid.Row="2" ColumnDefinitions="*, Auto" Margin="0,0,0,25">
             <Entry Grid.Column="0"
-                   BackgroundColor="Transparent"
-                   FontSize="18"
+BackgroundColor="Transparent"
+FontSize="18"
                    IsPassword="{Binding EntryAsPassword}"
-                   Placeholder="סיסמה"
-                   TextColor="Wheat"
+Placeholder="סיסמה"
+TextColor="Wheat"
                    VerticalOptions="Center"
                    Text="{Binding UserPassword}"/>
 
             <Button Grid.Column="1"
                     Command="{Binding TogglePasswordCommand}"
-                    Margin="5,0,0,0"
+Margin="5,0,0,0"
                     Padding="0"
-                    BackgroundColor="Transparent"
+BackgroundColor="Transparent"
                     FontSize="18"
                     FontFamily="MyMaterialSymbols"
-                    HorizontalOptions="End"
+HorizontalOptions="End"
                     Text="{Binding PasswordIconCode}"
                     TextColor="Black"
                     VerticalOptions="Center"/>
-        </Grid>
+            </Grid>
 
         <!-- כפתור חיבור -->
         <Button Grid.Row="3"
                 CornerRadius="8"
                 FontSize="18"
                 HeightRequest="50"
+                IsEnabled="False"
                 Text="חיבור"
                 TextColor="White"
                 IsEnabled="{Binding IsSignInButtonEnabled}"
                 Command="{Binding SignInCommand}"/>
-        
+
         <!-- קישור למסך הרשמה -->
         <HorizontalStackLayout Grid.Row="5" HorizontalOptions="Center" Margin="0,15,0,0">
             <Label Text="Don't have an account?" TextColor="Black" VerticalTextAlignment="Center"/>
             <Button Text="Sign Up" TextColor="BlueViolet" BackgroundColor="Transparent" Clicked="OnSignUpClicked"/>
         </HorizontalStackLayout>
-        
+
         <!-- תוית הודעה -->
         <Label Grid.Row="4"
                FontSize="22"

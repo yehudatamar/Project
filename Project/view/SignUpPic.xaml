@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project.view.SignUpPic"
+             xmlns:view="clr-namespace:Project.view"
+             x:DataType="view:SignUpPic"
+             Title="SignUpPic">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="#004FF9" />
+            <GradientStop Offset="1.0" Color="#FFF94C" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid RowDefinitions="1.5*,3*,1*">
+        <VerticalStackLayout
+            BackgroundColor="Azure"
+            VerticalOptions="Center"
+            Background="Transparent">
+
+            <Border
+                x:Name="AvatarBorder"
+                Background="Transparent"
+                WidthRequest="140"
+                HeightRequest="140"
+                StrokeThickness="2"
+                Stroke="{AppThemeBinding Light={DynamicResource Gray900},
+                                         Dark={DynamicResource Gray200}}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="70"/>
+                </Border.StrokeShape>
+
+                        <ImageButton
+                    x:Name="btnUserImage"
+                    Clicked="GetImage"
+                    Margin="0,25,0,20"
+                    Aspect="Fill"
+                    HeightRequest="180"
+                    Source="{Binding UserImageSource}"/> <!-- תמונה צריך להיות פה "-->
+            </Border>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="1"/>
+        <VerticalStackLayout Grid.Row="2" BackgroundColor="Magenta" />
+    </Grid>
+</ContentPage>

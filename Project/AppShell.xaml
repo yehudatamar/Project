@@ -10,8 +10,8 @@
     <!-- מסך הכניסה הוא המסך הראשוני והוא בודד (ללא סרגל תחתון) -->
     <ShellContent
         Title="SignIn"
-        ContentTemplate="{DataTemplate views:SignInPage}"
-        Route="SignInPage" />
+        ContentTemplate="{DataTemplate views:SignUpPic}"
+        Route="SignUpPic" />
 
     <!-- המסך הראשי רשום כנתיב נפרד -->
     <ShellContent

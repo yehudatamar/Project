@@ -54,7 +54,7 @@ public partial class SignUpPic : ContentPage
                 await TakePhotoAsync();
                 break;
 
-            case "בחר תמונה קיימת":
+            case "Choose from Gallery":
                 await SelectPhotoAsync();
                 break;
 
@@ -71,7 +71,33 @@ public partial class SignUpPic : ContentPage
 
     private async Task SelectPhotoAsync()
     {
-        throw new NotImplementedException();
+        try
+        {
+            var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
+            {
+                Title = "בחר תמונה"
+            });
+            if (result != null)
+            {
+                using var stream = await result.OpenReadAsync();
+                using var ms = new MemoryStream();
+                await stream.CopyToAsync(ms);
+                byte[] imageBytes = ms.ToArray();
+                UserImageBase64 = Convert.ToBase64String(imageBytes);
+                OnPropertyChanged(nameof(UserImageSource));
+            }
+        }
+        catch (Exception ex)
+        {
+            if (ex is TaskCanceledException)
+            {
+                await Toast.Make("Photo selection canceled.", ToastDuration.Short, 14).Show();
+            }
+            else
+            {
+                await Toast.Make($"Error selecting photo: {ex.Message}", ToastDuration.Short, 14).Show();
+            }
+        }
     }
 
     private async Task TakePhotoAsync()
